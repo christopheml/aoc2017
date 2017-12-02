@@ -15,10 +15,10 @@ public class InverseCaptchaTest {
     @Parameterized.Parameters(name = "\"{0}\" => {1}")
     public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][] {
-                {"8", 0},
+                {"8", 8},
                 {"1234", 0},
-                {"44", 4},
-                {"333", 6},
+                {"22", 4},
+                {"333", 9},
                 {"1122", 3},
                 {"1111", 4},
                 {"91212129", 9}
