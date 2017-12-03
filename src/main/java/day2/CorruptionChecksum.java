@@ -8,7 +8,9 @@ public final class CorruptionChecksum {
     }
 
     public static int rowChecksum(List<Integer> row) {
-        return 0;
+        int maximum = row.stream().max(Integer::compareTo).orElseThrow(IllegalArgumentException::new);
+        int minimum = row.stream().min(Integer::compareTo).orElseThrow(IllegalArgumentException::new);
+        return maximum - minimum;
     }
 
 }
