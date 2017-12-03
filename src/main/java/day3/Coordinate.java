@@ -38,4 +38,5 @@ final class Coordinate {
                 ", y=" + y +
                 '}';
     }
+
 }

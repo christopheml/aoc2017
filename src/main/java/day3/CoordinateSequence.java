@@ -21,7 +21,7 @@ public class CoordinateSequence {
 
     public CoordinateSequence() {
         position = Coordinate.origin();
-        stepsLeftUntilChange = nextStepCount();
+        stepsLeftUntilChange = 1;
         direction = nextDirection();
     }
 
@@ -55,7 +55,8 @@ public class CoordinateSequence {
     }
 
     private int nextStepCount() {
-        return (directionChanges + 1) / 2;
+        // The expected sequence is 0, 0, 1, 1, 2, 2, 3, 3...
+        return (directionChanges + 2) / 2 - 1;
     }
 
     private UnaryOperator<Coordinate> nextDirection() {
@@ -66,8 +67,9 @@ public class CoordinateSequence {
     public String toString() {
         return "CoordinateSequence{" +
                 "step=" + step +
+                ", directionChanges=" + directionChanges +
+                ", stepsLeftUntilChange=" + stepsLeftUntilChange +
                 ", position=" + position +
                 '}';
     }
-
 }
