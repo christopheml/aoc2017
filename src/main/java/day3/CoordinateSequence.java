@@ -1,0 +1,73 @@
+package day3;
+
+import java.util.List;
+import java.util.function.UnaryOperator;
+
+import static java.util.Arrays.asList;
+
+public class CoordinateSequence {
+
+    private int step = 1;
+
+    private int directionChanges = 0;
+
+    private int stepsLeftUntilChange;
+
+    private Coordinate position;
+
+    private UnaryOperator<Coordinate> direction;
+
+    private static final List<UnaryOperator<Coordinate>> directions = asList(Coordinate::right, Coordinate::up, Coordinate::left, Coordinate::down);
+
+    public CoordinateSequence() {
+        position = Coordinate.origin();
+        stepsLeftUntilChange = nextStepCount();
+        direction = nextDirection();
+    }
+
+    public Coordinate nextStep() {
+        if (stepsLeftUntilChange > 0) {
+            stepsLeftUntilChange--;
+        } else {
+            changeDirection();
+        }
+        doNextStep();
+        return position;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public Coordinate getPosition() {
+        return position;
+    }
+
+    private void changeDirection() {
+        directionChanges++;
+        stepsLeftUntilChange = nextStepCount();
+        direction = nextDirection();
+    }
+
+    private void doNextStep() {
+        step++;
+        position = direction.apply(position);
+    }
+
+    private int nextStepCount() {
+        return (directionChanges + 1) / 2;
+    }
+
+    private UnaryOperator<Coordinate> nextDirection() {
+        return directions.get(directionChanges % 4);
+    }
+
+    @Override
+    public String toString() {
+        return "CoordinateSequence{" +
+                "step=" + step +
+                ", position=" + position +
+                '}';
+    }
+
+}
