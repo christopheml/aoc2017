@@ -10,7 +10,7 @@ import java.util.Collection;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Parameterized.class)
-public class DefaultInverseCaptchaTest {
+public class InverseCaptchaTest {
 
     @Parameterized.Parameters(name = "\"{0}\" => {1}")
     public static Collection<Object[]> testData() {
@@ -29,7 +29,7 @@ public class DefaultInverseCaptchaTest {
 
     private final int expected;
 
-    public DefaultInverseCaptchaTest(String captcha, int expected) {
+    public InverseCaptchaTest(String captcha, int expected) {
         this.captcha = captcha;
         this.expected = expected;
     }

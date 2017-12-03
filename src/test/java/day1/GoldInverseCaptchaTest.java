@@ -10,7 +10,7 @@ import java.util.Collection;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Parameterized.class)
-public class ArbitraryLookaheadInverseCaptchaTest {
+public class GoldInverseCaptchaTest {
 
     @Parameterized.Parameters(name = "\"{0}\" => {1}")
     public static Collection<Object[]> testData() {
@@ -27,7 +27,7 @@ public class ArbitraryLookaheadInverseCaptchaTest {
 
     private final int expected;
 
-    public ArbitraryLookaheadInverseCaptchaTest(String captcha, int expected) {
+    public GoldInverseCaptchaTest(String captcha, int expected) {
         this.captcha = captcha;
         this.expected = expected;
     }
