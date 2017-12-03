@@ -1,8 +1,8 @@
 package day2;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class GoldCorruptionChecksum {
 
@@ -10,20 +10,27 @@ public final class GoldCorruptionChecksum {
     }
 
     public static int rowChecksum(List<Integer> row) {
-        Integer[] values = row.toArray(new Integer[row.size()]);
-        Arrays.sort(values, Comparator.reverseOrder());
-        for (int i = 0; i < values.length; i++) {
-            int current = values[i];
-            for (int j = 0; j < values.length; j++) {
-                if (i != j) {
-                    int candidate = values[j];
-                    if (current % candidate == 0) {
-                        return current / candidate;
-                    }
-                }
+        List<Integer> values = reverse(row);
+        for (Integer current : values) {
+            Integer divider = findDivider(values, current);
+            if (divider != null) {
+                return current / divider;
             }
         }
         throw new IllegalStateException();
+    }
+
+    private static Integer findDivider(List<Integer> values, int current) {
+        for (Integer candidate : values) {
+            if (current != candidate && current % candidate == 0) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    private static List<Integer> reverse(List<Integer> row) {
+        return row.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
 }
