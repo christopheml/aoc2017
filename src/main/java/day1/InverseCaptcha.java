@@ -2,10 +2,13 @@ package day1;
 
 public final class InverseCaptcha {
 
-    private InverseCaptcha() {
+    private final int lookahead;
+
+    public InverseCaptcha(int lookahead) {
+        this.lookahead = lookahead;
     }
 
-    public static int compute(String captcha) {
+    public int compute(String captcha) {
         int total = 0;
 
         for (int i = 0; i < captcha.length(); i++) {
@@ -24,8 +27,8 @@ public final class InverseCaptcha {
      *
      * This wraps around the end of the string, so nextPosition(captcha, captcha.size() - 1) == 0.
      */
-    private static int nextPosition(String captcha, int i) {
-        return (i + 1) % captcha.length();
+    private int nextPosition(String captcha, int i) {
+        return (i + lookahead) % captcha.length();
     }
 
 }

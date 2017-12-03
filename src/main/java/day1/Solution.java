@@ -24,7 +24,7 @@ public class Solution {
             "316676637165317972648916116755224598519934598889627918883283534261513179931798591959489372165295";
 
     public static void main(String... args) {
-        System.out.println(InverseCaptcha.compute(PUZZLE_INPUT));
+        System.out.println(new InverseCaptcha(1).compute(PUZZLE_INPUT));
     }
 
 }
