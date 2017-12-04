@@ -1,7 +1,7 @@
 package day2;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import common.FileReader;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +19,7 @@ public class Solution {
 
     private static Spreadsheet readSpreadsheet(String filename) {
         Spreadsheet spreadsheet = new Spreadsheet();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(Solution.class.getResourceAsStream(filename)))) {
+        try (FileReader reader = FileReader.read(filename)) {
             reader.lines()
                     .map(Solution::splitCells)
                     .map(Arrays::asList)
