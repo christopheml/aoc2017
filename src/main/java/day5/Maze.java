@@ -2,14 +2,21 @@ package day5;
 
 public class Maze {
 
-    private int[] maze;
+    private final int[] maze;
 
     private int position;
 
     private int steps;
 
-    public Maze(int... maze) {
+    private final OffsetUpdateStrategy offsetUpdateStrategy;
+
+    public static Maze simpleMaze(int... maze) {
+        return new Maze(offset -> offset + 1, maze);
+    }
+
+    private Maze(OffsetUpdateStrategy offsetUpdateStrategy, int... maze) {
         this.maze = maze;
+        this.offsetUpdateStrategy = offsetUpdateStrategy;
         position = 0;
         steps = 0;
     }
@@ -18,7 +25,7 @@ public class Maze {
         while (inMaze()) {
             int origin = position;
             jump();
-            maze[origin]++;
+            maze[origin] = offsetUpdateStrategy.update(maze[origin]);
             steps++;
         }
         return steps;

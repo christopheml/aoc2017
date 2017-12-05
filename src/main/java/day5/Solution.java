@@ -11,7 +11,7 @@ public class Solution {
                     .map(Integer::valueOf)
                     .mapToInt(Integer::intValue)
                     .toArray();
-            Maze maze = new Maze(input);
+            Maze maze = Maze.simpleMaze(input);
             int steps = maze.run();
             System.out.println("Exited maze in " + steps + " steps");
         }
