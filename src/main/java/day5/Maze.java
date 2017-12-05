@@ -16,13 +16,11 @@ public class Maze {
 
     public int run() {
         while (inMaze()) {
-            System.out.println(this);
             int origin = position;
             jump();
             maze[origin]++;
             steps++;
         }
-        System.out.println(this);
         return steps;
     }
 
