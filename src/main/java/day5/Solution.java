@@ -11,10 +11,21 @@ public class Solution {
                     .map(Integer::valueOf)
                     .mapToInt(Integer::intValue)
                     .toArray();
-            Maze maze = Maze.simpleMaze(input);
-            int steps = maze.run();
-            System.out.println("Exited maze in " + steps + " steps");
+            runSimpleMaze(input);
+            runAdvancedMaze(input);
         }
+    }
+
+    private static void runSimpleMaze(int[] input) {
+        Maze maze = Maze.simpleMaze(input);
+        int steps = maze.run();
+        System.out.println("Exited maze in " + steps + " steps");
+    }
+
+    private static void runAdvancedMaze(int[] input) {
+        Maze maze = Maze.advancedMaze(input);
+        int steps = maze.run();
+        System.out.println("Exited advanced maze in " + steps + " steps");
     }
 
 }

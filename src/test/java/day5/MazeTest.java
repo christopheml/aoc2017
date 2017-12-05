@@ -13,4 +13,11 @@ public class MazeTest {
         assertThat(steps).isEqualTo(5);
     }
 
+    @Test
+    public void alernative_example() throws Exception {
+        Maze maze = Maze.advancedMaze(0, 3, 0, 1, -3);
+        int steps = maze.run();
+        assertThat(steps).isEqualTo(10);
+    }
+
 }

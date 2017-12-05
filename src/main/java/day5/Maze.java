@@ -1,5 +1,7 @@
 package day5;
 
+import java.util.Arrays;
+
 public class Maze {
 
     private final int[] maze;
@@ -14,8 +16,12 @@ public class Maze {
         return new Maze(offset -> offset + 1, maze);
     }
 
+    public static Maze advancedMaze(int... maze) {
+        return new Maze(offset -> (offset > 2) ? (offset - 1) : (offset + 1), maze);
+    }
+
     private Maze(OffsetUpdateStrategy offsetUpdateStrategy, int... maze) {
-        this.maze = maze;
+        this.maze = Arrays.copyOf(maze, maze.length);
         this.offsetUpdateStrategy = offsetUpdateStrategy;
         position = 0;
         steps = 0;
@@ -59,5 +65,4 @@ public class Maze {
         }
         return sb.toString();
     }
-
 }
