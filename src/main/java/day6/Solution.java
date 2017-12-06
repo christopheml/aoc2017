@@ -7,6 +7,8 @@ public class Solution {
         LoopDetector loopDetector = new LoopDetector(banks);
         int steps = loopDetector.getNextCycleSize();
         System.out.println("Cycle detected after " + steps + " steps");
+        int loopSize = loopDetector.getNextCycleSize();
+        System.out.println("Cycle size is " + loopSize + " steps");
     }
 
 }
