@@ -50,16 +50,7 @@ public class MemoryBanks {
         return Arrays.copyOf(banks, banks.length);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MemoryBanks that = (MemoryBanks) o;
-        return Arrays.equals(banks, that.banks);
-    }
-
-    @Override
-    public int hashCode() {
+    public int getState() {
         return Arrays.hashCode(banks);
     }
 
