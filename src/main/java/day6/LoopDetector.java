@@ -11,7 +11,8 @@ class LoopDetector {
         this.banks = banks;
     }
 
-    public int stepsUntilLoop() {
+    public int getNextCycleSize() {
+        previousStates.clear();
         int steps = 0;
         int state = banks.getState();
         while (!previousStates.contains(state)) {
