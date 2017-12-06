@@ -9,16 +9,16 @@ public class Solution {
         private PassphraseValidator validator = new PassphraseValidator();
         private int validLines = 0;
 
-        private GoldPassphaseValidator goldValidator = new GoldPassphaseValidator();
-        private int goldValidLines = 0;
+        private AdvancedPassphaseValidator advancedValidator = new AdvancedPassphaseValidator();
+        private int advancedValidLines = 0;
 
         public Counter accumulate(String line) {
             if (validator.isValid(line)) {
                 validLines++;
             }
 
-            if (goldValidator.isValid(line)) {
-                goldValidLines++;
+            if (advancedValidator.isValid(line)) {
+                advancedValidLines++;
             }
 
             return this;
@@ -26,7 +26,7 @@ public class Solution {
 
         public Counter combine(Counter other) {
             this.validLines += other.validLines;
-            this.goldValidLines += other.goldValidLines;
+            this.advancedValidLines += other.advancedValidLines;
             return this;
         }
 
@@ -37,7 +37,7 @@ public class Solution {
         try (FileReader reader = FileReader.read("/day4/passphrases.txt")) {
             Counter counter = reader.lines().collect(Counter::new, Counter::accumulate, Counter::combine);
             System.out.println("Valid passphrases: " + counter.validLines);
-            System.out.println("Valid gold passphrases: " + counter.goldValidLines);
+            System.out.println("Valid advanced passphrases: " + counter.advancedValidLines);
         }
 
     }

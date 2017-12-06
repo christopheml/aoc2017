@@ -13,8 +13,8 @@ public class Solution {
         int checksum = input.checksum(CorruptionChecksum::rowChecksum, Integer::sum);
         System.out.println("Checksum is " + checksum);
 
-        int goldChecksum = input.checksum(GoldCorruptionChecksum::rowChecksum, Integer::sum);
-        System.out.println("Gold checksum is " + goldChecksum);
+        int advancedChecksum = input.checksum(AdvancedCorruptionChecksum::rowChecksum, Integer::sum);
+        System.out.println("Advanced checksum is " + advancedChecksum);
     }
 
     private static Spreadsheet readSpreadsheet(String filename) {

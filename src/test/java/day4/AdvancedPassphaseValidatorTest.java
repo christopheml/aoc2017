@@ -10,7 +10,7 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Parameterized.class)
-public class GoldPassphaseValidatorTest {
+public class AdvancedPassphaseValidatorTest {
 
     @Parameterized.Parameters(name = "{0}: {1}")
     public static Collection<Object[]> testData() {
@@ -27,14 +27,14 @@ public class GoldPassphaseValidatorTest {
 
     private final boolean expectedValidity;
 
-    public GoldPassphaseValidatorTest(String passphrase, boolean expectedValidity) {
+    public AdvancedPassphaseValidatorTest(String passphrase, boolean expectedValidity) {
         this.passphrase = passphrase;
         this.expectedValidity = expectedValidity;
     }
 
     @Test
     public void testInputs() {
-        GoldPassphaseValidator validator = new GoldPassphaseValidator();
+        AdvancedPassphaseValidator validator = new AdvancedPassphaseValidator();
         assertThat(validator.isValid(passphrase)).isEqualTo(expectedValidity);
     }
 

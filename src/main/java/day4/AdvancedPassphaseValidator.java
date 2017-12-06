@@ -6,7 +6,7 @@ import java.util.Set;
 
 import static java.util.Arrays.asList;
 
-public class GoldPassphaseValidator {
+public class AdvancedPassphaseValidator {
 
     public boolean isValid(String passphrase) {
         String[] words = getSortedWords(passphrase);

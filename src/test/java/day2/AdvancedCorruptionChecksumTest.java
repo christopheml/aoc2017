@@ -11,7 +11,7 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Parameterized.class)
-public class GoldCorruptionChecksumTest {
+public class AdvancedCorruptionChecksumTest {
 
     @Parameterized.Parameters(name = "{0} => {1}")
     public static Collection<Object[]> testData() {
@@ -26,14 +26,14 @@ public class GoldCorruptionChecksumTest {
 
     private final int expectedChecksum;
 
-    public GoldCorruptionChecksumTest(List<Integer> row, int expectedChecksum) {
+    public AdvancedCorruptionChecksumTest(List<Integer> row, int expectedChecksum) {
         this.row = row;
         this.expectedChecksum = expectedChecksum;
     }
 
     @Test
     public void testInputs() {
-        assertThat(GoldCorruptionChecksum.rowChecksum(row)).isEqualTo(expectedChecksum);
+        assertThat(AdvancedCorruptionChecksum.rowChecksum(row)).isEqualTo(expectedChecksum);
     }
 
 }
