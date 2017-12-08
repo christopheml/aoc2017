@@ -1,6 +1,6 @@
 package day8;
 
-import java.util.function.Consumer;
+import java.util.List;
 
 class Interpreter {
 
@@ -12,9 +12,10 @@ class Interpreter {
         registers = new Registers();
     }
 
-    void execute(String statement) {
-        Consumer<Registers> instruction = parser.parse(statement);
-        instruction.accept(registers);
+    void execute(List<String> statement) {
+        statement.stream()
+                .map(parser::parse)
+                .forEach(instruction -> instruction.accept(registers));
     }
 
     Registers getRegisters() {

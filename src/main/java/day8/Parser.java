@@ -21,10 +21,10 @@ class Parser {
         Consumer<Register> operation = operation(matcher.group(2), Integer.valueOf(matcher.group(3)));
         Function<Register, Boolean> condition = condition(matcher.group(5), Integer.valueOf(matcher.group(6)));
 
-        return execute(condition, conditionRegister, operation, targetRegister);
+        return createInstruction(condition, conditionRegister, operation, targetRegister);
     }
 
-    private Consumer<Registers> execute(Function<Register, Boolean> condition, String conditionRegister, Consumer<Register> operation, String targetRegister) {
+    private Consumer<Registers> createInstruction(Function<Register, Boolean> condition, String conditionRegister, Consumer<Register> operation, String targetRegister) {
         return registers -> {
             if (condition.apply(registers.forName(conditionRegister))) {
                 operation.accept(registers.forName(targetRegister));

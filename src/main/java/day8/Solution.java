@@ -2,6 +2,8 @@ package day8;
 
 import common.FileReader;
 
+import java.util.stream.Collectors;
+
 final class Solution {
 
     private Solution() {
@@ -10,7 +12,7 @@ final class Solution {
     public static void main(String... args) throws Exception {
         Interpreter interpreter = new Interpreter();
         try (FileReader reader = FileReader.read("/day8/program.txt")) {
-            reader.lines().forEach(interpreter::execute);
+            interpreter.execute(reader.lines().collect(Collectors.toList()));
         }
         Register highest = interpreter.getRegisters().highest();
         System.out.println(String.format("Largest register has value %d", highest.value()));
