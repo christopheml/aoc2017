@@ -1,7 +1,7 @@
 package day8;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,14 +19,14 @@ class Parser {
         String conditionRegister = matcher.group(4);
 
         Consumer<Register> operation = operation(matcher.group(2), Integer.valueOf(matcher.group(3)));
-        Function<Register, Boolean> condition = condition(matcher.group(5), Integer.valueOf(matcher.group(6)));
+        Predicate<Register> condition = condition(matcher.group(5), Integer.valueOf(matcher.group(6)));
 
         return createInstruction(condition, conditionRegister, operation, targetRegister);
     }
 
-    private Consumer<Registers> createInstruction(Function<Register, Boolean> condition, String conditionRegister, Consumer<Register> operation, String targetRegister) {
+    private Consumer<Registers> createInstruction(Predicate<Register> condition, String conditionRegister, Consumer<Register> operation, String targetRegister) {
         return registers -> {
-            if (condition.apply(registers.forName(conditionRegister))) {
+            if (condition.test(registers.forName(conditionRegister))) {
                 operation.accept(registers.forName(targetRegister));
             }
         };
@@ -43,7 +43,7 @@ class Parser {
         }
     }
 
-    private Function<Register, Boolean> condition(String operator, int value) {
+    private Predicate<Register> condition(String operator, int value) {
         switch (operator) {
             case "==":
                 return register -> register.value() == value;
