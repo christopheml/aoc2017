@@ -2,9 +2,9 @@ package day8;
 
 class Register {
 
-    private final String name;
+    protected final String name;
 
-    private int value;
+    protected int value;
 
     Register(String name) {
         this.name = name;

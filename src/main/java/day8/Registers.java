@@ -31,12 +31,6 @@ public class Registers {
         return registers.values().stream();
     }
 
-    Register highest() {
-        return registers.values().stream()
-                .max(Comparator.comparing(Register::value))
-                .orElseThrow(IllegalStateException::new);
-    }
-
     @Override
     public String toString() {
         return registers.entrySet().stream()
