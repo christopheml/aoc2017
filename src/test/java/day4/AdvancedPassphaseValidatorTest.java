@@ -3,6 +3,7 @@ package day4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Collection;
 
@@ -12,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(Parameterized.class)
 public class AdvancedPassphaseValidatorTest {
 
-    @Parameterized.Parameters(name = "{0}: {1}")
+    @Parameters(name = "{0}: {1}")
     public static Collection<Object[]> testData() {
         return asList(new Object[][] {
                 {"abcde fghij", true},

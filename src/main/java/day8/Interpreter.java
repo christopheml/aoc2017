@@ -5,16 +5,16 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Interpreter {
+class Interpreter {
 
-    public static final Pattern INSTRUCTION_PATTERN = Pattern.compile("^([a-z]+) (inc|dec) (-?\\d+) if ([a-z]+) (<|>|<=|>=|==|!=) (-?\\d+)$");
+    private static final Pattern INSTRUCTION_PATTERN = Pattern.compile("^([a-z]+) (inc|dec) (-?\\d+) if ([a-z]+) (<|>|<=|>=|==|!=) (-?\\d+)$");
     private final Registers registers;
 
-    public Interpreter() {
+    Interpreter() {
         registers = new Registers();
     }
 
-    public void execute(String instruction) {
+    void execute(String instruction) {
         Matcher matcher = INSTRUCTION_PATTERN.matcher(instruction);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("Invalid instruction: " +instruction);
@@ -33,7 +33,7 @@ public class Interpreter {
         execute(condition, conditionRegister, operation, targetRegister);
     }
 
-    public Registers getRegisters() {
+    Registers getRegisters() {
         return registers;
     }
 

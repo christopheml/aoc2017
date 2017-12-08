@@ -1,8 +1,11 @@
 package day3;
 
-public class Solution {
+final class Solution {
 
     private static final int DESTINATION_STEP = 277678;
+
+    private Solution() {
+    }
 
     public static void main(String... args) {
 

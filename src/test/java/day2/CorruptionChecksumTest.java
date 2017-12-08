@@ -3,6 +3,7 @@ package day2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(Parameterized.class)
 public class CorruptionChecksumTest {
 
-    @Parameterized.Parameters(name = "{0} => {1}")
+    @Parameters(name = "{0} => {1}")
     public static Collection<Object[]> testData() {
         return asList(new Object[][]{
                 {asList(5, 1, 9, 5), 8},

@@ -6,9 +6,9 @@ import java.util.Set;
 
 import static java.util.Arrays.asList;
 
-public class AdvancedPassphaseValidator {
+class AdvancedPassphaseValidator {
 
-    public boolean isValid(String passphrase) {
+    boolean isValid(String passphrase) {
         String[] words = getSortedWords(passphrase);
         Set<String> wordSet = new HashSet<>(asList(words));
         return wordSet.size() == words.length;

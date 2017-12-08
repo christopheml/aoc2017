@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Program {
+class Program {
 
     private final String name;
 
@@ -14,20 +14,20 @@ public class Program {
 
     private Program parent;
 
-    public Program(String name, int weight) {
+    Program(String name, int weight) {
         this.name = name;
         this.weight = weight;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getWeight() {
+    int getWeight() {
         return weight;
     }
 
-    public void attachChild(Program child) {
+    void attachChild(Program child) {
         children.add(child);
         child.attachParent(this);
     }
@@ -36,7 +36,8 @@ public class Program {
         this.parent = program;
     }
 
-    public Optional<Program> getParent() {
+    Optional<Program> getParent() {
         return Optional.ofNullable(parent);
     }
+
 }

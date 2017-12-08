@@ -1,14 +1,14 @@
 package day1;
 
-public final class InverseCaptcha {
+final class InverseCaptcha {
 
     private final int lookahead;
 
-    public InverseCaptcha(int lookahead) {
+    InverseCaptcha(int lookahead) {
         this.lookahead = lookahead;
     }
 
-    public int compute(String captcha) {
+    int compute(String captcha) {
         int total = 0;
 
         for (int i = 0; i < captcha.length(); i++) {

@@ -14,7 +14,7 @@ import static java.util.Arrays.asList;
 /**
  * Parses a listing into a tree of programs.
  */
-public class ListingParser {
+class ListingParser {
 
     private static final Pattern LINE_PATTERN = Pattern.compile("([a-z]+) \\((\\d+)\\)(?: -> (.*))?");
 
@@ -22,7 +22,7 @@ public class ListingParser {
 
     private final Map<String, List<String>> children = new HashMap<>();
 
-    public Program parse(String filename) throws Exception {
+    Program parse(String filename) throws Exception {
         init();
 
         parseLines(filename);

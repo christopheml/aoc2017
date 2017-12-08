@@ -1,6 +1,9 @@
 package day7;
 
-public class Solution {
+final class Solution {
+
+    private Solution() {
+    }
 
     public static void main(String... args) throws Exception {
         ListingParser parser = new ListingParser();

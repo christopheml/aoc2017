@@ -2,7 +2,7 @@ package day5;
 
 import java.util.Arrays;
 
-public class Maze {
+public final class Maze {
 
     private final int[] maze;
 
@@ -12,11 +12,11 @@ public class Maze {
 
     private final OffsetUpdateStrategy offsetUpdateStrategy;
 
-    public static Maze simpleMaze(int... maze) {
+    static Maze simpleMaze(int... maze) {
         return new Maze(offset -> offset + 1, maze);
     }
 
-    public static Maze advancedMaze(int... maze) {
+    static Maze advancedMaze(int... maze) {
         return new Maze(offset -> (offset > 2) ? (offset - 1) : (offset + 1), maze);
     }
 
@@ -27,7 +27,7 @@ public class Maze {
         steps = 0;
     }
 
-    public int run() {
+    int run() {
         while (inMaze()) {
             int origin = position;
             jump();
@@ -65,4 +65,5 @@ public class Maze {
         }
         return sb.toString();
     }
+
 }

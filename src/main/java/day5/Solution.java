@@ -2,8 +2,10 @@ package day5;
 
 import common.FileReader;
 
-public class Solution {
+final class Solution {
 
+    private Solution() {
+    }
 
     public static void main(String... args) throws Exception {
         try (FileReader reader = FileReader.read("/day5/maze.txt")) {

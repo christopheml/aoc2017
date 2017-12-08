@@ -4,14 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 class LoopDetector {
-    private MemoryBanks banks;
+
+    private final MemoryBanks banks;
+
     private final Set<Integer> previousStates = new HashSet<>();
 
-    public LoopDetector(MemoryBanks banks) {
+    LoopDetector(MemoryBanks banks) {
         this.banks = banks;
     }
 
-    public int getNextCycleSize() {
+    int getNextCycleSize() {
         previousStates.clear();
         int steps = 0;
         int state = banks.getState();

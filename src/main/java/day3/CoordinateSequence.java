@@ -19,13 +19,13 @@ public class CoordinateSequence {
 
     private static final List<UnaryOperator<Coordinate>> directions = asList(Coordinate::right, Coordinate::up, Coordinate::left, Coordinate::down);
 
-    public CoordinateSequence() {
+    CoordinateSequence() {
         position = Coordinate.origin();
         stepsLeftUntilChange = 1;
         direction = nextDirection();
     }
 
-    public Coordinate nextStep() {
+    Coordinate nextStep() {
         if (stepsLeftUntilChange > 0) {
             stepsLeftUntilChange--;
         } else {
@@ -35,11 +35,11 @@ public class CoordinateSequence {
         return position;
     }
 
-    public int getStep() {
+    int getStep() {
         return step;
     }
 
-    public Coordinate getPosition() {
+    Coordinate getPosition() {
         return position;
     }
 
@@ -56,7 +56,7 @@ public class CoordinateSequence {
 
     private int nextStepCount() {
         // The expected sequence is 0, 0, 1, 1, 2, 2, 3, 3...
-        return (directionChanges + 2) / 2 - 1;
+        return ((directionChanges + 2) / 2) - 1;
     }
 
     private UnaryOperator<Coordinate> nextDirection() {
@@ -72,4 +72,5 @@ public class CoordinateSequence {
                 ", position=" + position +
                 '}';
     }
+
 }

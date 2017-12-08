@@ -10,15 +10,15 @@ public class Registers {
 
     private final Map<String, Register> registers;
 
-    public Registers() {
+    Registers() {
         registers = new HashMap<>();
     }
 
-    public Register forName(String name) {
+    Register forName(String name) {
         return registers.computeIfAbsent(name, Register::new);
     }
 
-    public Register highest() {
+    Register highest() {
         return registers.values().stream()
                 .max(Comparator.comparing(Register::value))
                 .orElseThrow(IllegalStateException::new);

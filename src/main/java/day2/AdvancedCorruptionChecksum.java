@@ -4,12 +4,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class AdvancedCorruptionChecksum {
+final class AdvancedCorruptionChecksum {
 
     private AdvancedCorruptionChecksum() {
     }
 
-    public static int rowChecksum(List<Integer> row) {
+    static int rowChecksum(List<Integer> row) {
         List<Integer> values = reverse(row);
         for (Integer current : values) {
             Integer divider = findDivider(values, current);

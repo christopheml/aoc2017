@@ -2,11 +2,11 @@ package day3;
 
 final class Coordinate {
 
-    public final int x;
+    final int x;
 
-    public final int y;
+    final int y;
 
-    public static Coordinate origin() {
+    static Coordinate origin() {
         return new Coordinate(0, 0);
     }
 
@@ -15,19 +15,19 @@ final class Coordinate {
         this.y = y;
     }
 
-    public Coordinate left() {
+    Coordinate left() {
         return new Coordinate(x - 1, y);
     }
 
-    public Coordinate right() {
+    Coordinate right() {
         return new Coordinate(x + 1, y);
     }
 
-    public Coordinate up() {
+    Coordinate up() {
         return new Coordinate(x, y - 1);
     }
 
-    public Coordinate down() {
+    Coordinate down() {
         return new Coordinate(x, y + 1);
     }
 

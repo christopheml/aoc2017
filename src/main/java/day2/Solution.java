@@ -6,7 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Solution {
+final class Solution {
+
+    private Solution() {
+    }
 
     public static void main(String... args) {
         Spreadsheet input = readSpreadsheet("/day2/speadsheet.txt");

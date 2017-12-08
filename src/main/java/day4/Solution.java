@@ -2,7 +2,10 @@ package day4;
 
 import common.FileReader;
 
-public class Solution {
+final class Solution {
+
+    private Solution() {
+    }
 
     private static final class Counter {
 
@@ -12,7 +15,7 @@ public class Solution {
         private AdvancedPassphaseValidator advancedValidator = new AdvancedPassphaseValidator();
         private int advancedValidLines = 0;
 
-        public Counter accumulate(String line) {
+        Counter accumulate(String line) {
             if (validator.isValid(line)) {
                 validLines++;
             }
@@ -24,7 +27,7 @@ public class Solution {
             return this;
         }
 
-        public Counter combine(Counter other) {
+        Counter combine(Counter other) {
             this.validLines += other.validLines;
             this.advancedValidLines += other.advancedValidLines;
             return this;

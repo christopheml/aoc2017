@@ -2,7 +2,7 @@ package day6;
 
 import java.util.Arrays;
 
-public class MemoryBanks {
+final class MemoryBanks {
 
     private final int[] banks;
 
@@ -14,7 +14,7 @@ public class MemoryBanks {
         return new MemoryBanks(values, size);
     }
 
-    public void cycle() {
+    void cycle() {
         int index = indexOfBankWithMostBlocks();
         reallocateFrom(index);
     }
@@ -22,7 +22,7 @@ public class MemoryBanks {
     private void reallocateFrom(int index) {
         int blocksToReallocate = clearBank(index);
         while (blocksToReallocate > 0) {
-            index = (++index) % banks.length;
+            index = ++index % banks.length;
             banks[index]++;
             blocksToReallocate--;
         }
@@ -46,11 +46,11 @@ public class MemoryBanks {
         return maximumIndex;
     }
 
-    public int[] dump() {
+    int[] dump() {
         return Arrays.copyOf(banks, banks.length);
     }
 
-    public int getState() {
+    int getState() {
         return Arrays.hashCode(banks);
     }
 
