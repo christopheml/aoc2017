@@ -14,33 +14,32 @@ class Interpreter {
         registers = new Registers();
     }
 
-    void execute(String instruction) {
-        Matcher matcher = INSTRUCTION_PATTERN.matcher(instruction);
+    void execute(String statement) {
+        Matcher matcher = INSTRUCTION_PATTERN.matcher(statement);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("Invalid instruction: " +instruction);
+            throw new IllegalArgumentException("Invalid statement: " + statement);
         }
 
         Register targetRegister = registers.forName(matcher.group(1));
-        String operationOperator = matcher.group(2);
-        int operationOperand = Integer.valueOf(matcher.group(3));
-        Consumer<Register> operation = operation(operationOperator, operationOperand);
-
         Register conditionRegister = registers.forName(matcher.group(4));
-        String conditionOperator = matcher.group(5);
-        int conditionOperand = Integer.valueOf(matcher.group(6));
-        Function<Register, Boolean> condition = condition(conditionOperator, conditionOperand);
 
-        execute(condition, conditionRegister, operation, targetRegister);
+        Consumer<Register> operation = operation(matcher.group(2), Integer.valueOf(matcher.group(3)));
+        Function<Register, Boolean> condition = condition(matcher.group(5), Integer.valueOf(matcher.group(6)));
+
+        Runnable instruction = execute(condition, conditionRegister, operation, targetRegister);
+        instruction.run();
     }
 
     Registers getRegisters() {
         return registers;
     }
 
-    private void execute(Function<Register, Boolean> condition, Register conditionRegister, Consumer<Register> operation, Register targetRegister) {
-        if (condition.apply(conditionRegister)) {
-            operation.accept(targetRegister);
-        }
+    private Runnable execute(Function<Register, Boolean> condition, Register conditionRegister, Consumer<Register> operation, Register targetRegister) {
+        return () -> {
+            if (condition.apply(conditionRegister)) {
+                operation.accept(targetRegister);
+            }
+        };
     }
 
     private Consumer<Register> operation(String operator, int value) {

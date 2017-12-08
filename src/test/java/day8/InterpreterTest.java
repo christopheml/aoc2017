@@ -12,7 +12,7 @@ public class InterpreterTest {
         Interpreter interpreter = new Interpreter();
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(
                 () -> interpreter.execute("garbage")
-        ).withMessage("Invalid instruction: garbage");
+        ).withMessage("Invalid statement: garbage");
     }
 
     @Test
