@@ -9,7 +9,11 @@ class Interpreter {
     private final Parser parser = new Parser();
 
     Interpreter() {
-        registers = new Registers();
+        this(new Registers());
+    }
+
+    Interpreter(Registers registers) {
+        this.registers = registers;
     }
 
     void execute(List<String> statement) {

@@ -27,7 +27,10 @@ public class InterpreterTest {
                 "c dec -10 if a >= 1",
                 "c inc -20 if c == 10"
         ));
-        assertThat(interpreter.getRegisters().highest().value()).isEqualTo(1);
+
+        int highestValue = Solution.highestRegisterValue(interpreter);
+        assertThat(highestValue).isEqualTo(1);
     }
+
 
 }
