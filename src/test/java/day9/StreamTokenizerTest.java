@@ -13,13 +13,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(Parameterized.class)
 public class StreamTokenizerTest {
 
-
     @Parameterized.Parameters(name = "{0} -> {1}")
     public static Collection<Object[]> testData() {
         return asList(new Object[][]{
                 {"{}", asList(Token.GROUP_OPEN, Token.GROUP_CLOSE)},
                 {"!<", asList(Token.COMMENT, Token.COMMENTED)},
-                {"<!!!>>", asList(Token.GARBAGE_OPEN, Token.COMMENT, Token.COMMENTED, Token.COMMENT, Token.COMMENTED, Token.GARBAGE_CLOSE)}
+                {"<>", asList(Token.GARBAGE_OPEN, Token.GARBAGE_CLOSE)},
+                {"<sqs>", asList(Token.GARBAGE_OPEN, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE_CLOSE)},
+                {"<<<<>", asList(Token.GARBAGE_OPEN, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE_CLOSE)},
+                {"<!!>", asList(Token.GARBAGE_OPEN, Token.COMMENT, Token.COMMENTED, Token.GARBAGE_CLOSE)},
+                {"<{!>}>", asList(Token.GARBAGE_OPEN, Token.GARBAGE, Token.COMMENT, Token.COMMENTED, Token.GARBAGE, Token.GARBAGE_CLOSE)},
+                {"<!!!>>", asList(Token.GARBAGE_OPEN, Token.COMMENT, Token.COMMENTED, Token.COMMENT, Token.COMMENTED, Token.GARBAGE_CLOSE)},
+                {"{{{}}}", asList(Token.GROUP_OPEN, Token.GROUP_OPEN, Token.GROUP_OPEN, Token.GROUP_CLOSE, Token.GROUP_CLOSE, Token.GROUP_CLOSE)},
+                {"{<{},{},{{}}>}", asList(Token.GROUP_OPEN, Token.GARBAGE_OPEN, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE,
+                        Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE, Token.GARBAGE_CLOSE, Token.GROUP_CLOSE)}
         });
     }
 
