@@ -1,0 +1,7 @@
+package day9;
+
+public enum Token {
+
+    REGULAR, GROUP_OPEN, GROUP_CLOSE, COMMENT, COMMENTED, GARBAGE_OPEN, GARBAGE_CLOSE, GARBAGE
+
+}
