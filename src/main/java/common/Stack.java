@@ -1,4 +1,4 @@
-package day9;
+package common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,10 @@ public class Stack<T> {
     public T peek() {
         checkIfEmpty();
         return elements.get(STACK_TOP);
+    }
+
+    public boolean isEmpty() {
+        return elements.isEmpty();
     }
 
     private void checkIfEmpty() {
