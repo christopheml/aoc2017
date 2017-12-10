@@ -36,4 +36,11 @@ public class CircularListTest {
         assertThat(list).containsExactly(0, 4, 3, 2, 1);
     }
 
+    @Test
+    public void swap_with_self() {
+        CircularList<Integer> list = new CircularList<>(asList(0, 1, 2, 3, 4));
+        list.swap(3, 3);
+        assertThat(list).containsExactly(0, 1, 2, 3, 4);
+    }
+
 }
