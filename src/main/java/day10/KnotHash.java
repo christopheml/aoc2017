@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class KnotHash {
+class KnotHash {
 
     private final CircularList<Integer> values;
 
@@ -14,7 +14,7 @@ public class KnotHash {
 
     private int position;
 
-    public KnotHash(int complexity, List<Integer> lengths) {
+    KnotHash(int complexity, List<Integer> lengths) {
         this.lengths = lengths;
         values = new CircularList<>(integerRange(complexity));
         skipSize = 0;
@@ -31,6 +31,11 @@ public class KnotHash {
     }
 
     private void reverseSlice(int length) {
+        if (length < 2) {
+            // reverseSlice(0) and reverseSlice(1) are no-op by definition
+            return;
+        }
+
         for (int i = 0; i <= (length - 1) / 2; ++i) {
             values.swap(position + i, position + length - 1 - i);
         }

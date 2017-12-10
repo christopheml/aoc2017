@@ -4,7 +4,7 @@ import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class CircularList<T> extends AbstractCollection<T> implements Collection<T> {
+class CircularList<T> extends AbstractCollection<T> implements Collection<T> {
 
     private final Object[] elements;
 
