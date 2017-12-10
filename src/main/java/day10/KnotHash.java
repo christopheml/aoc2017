@@ -21,12 +21,17 @@ class KnotHash {
         position = 0;
     }
 
-    public int compute() {
-        preventReuse();
+    public void round() {
         for (int length : lengths) {
             reverseSlice(length);
             skipTo(length);
         }
+    }
+
+    /**
+     * This returns the sample value for first part.
+     */
+    public int sample() {
         return values.get(0) * values.get(1);
     }
 
@@ -44,12 +49,6 @@ class KnotHash {
     private void skipTo(int sliceSize) {
         position = position + sliceSize + skipSize;
         skipSize++;
-    }
-
-    private void preventReuse() {
-        if (skipSize > 0) {
-            throw new IllegalStateException("KnotHash objects cannot be reused");
-        }
     }
 
     private List<Integer> integerRange(int complexity) {
