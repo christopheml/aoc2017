@@ -15,8 +15,9 @@ public final class Solution {
             String stream = reader.lines().findFirst().orElseThrow(IllegalStateException::new);
 
             StreamTokenizer tokenizer = new StreamTokenizer(stream);
-            StreamParser parser = new StreamParser();
             List<Token> tokens = tokenizer.tokenize();
+
+            StreamParser parser = new StreamParser();
             Node<Integer> root = parser.parse(tokens);
 
             ScoreCalculator scoreCalculator = new ScoreCalculator();
