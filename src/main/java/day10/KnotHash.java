@@ -35,6 +35,10 @@ class KnotHash {
         return values.get(0) * values.get(1);
     }
 
+    public SparseHash sparseHash() {
+        return new SparseHash(values);
+    }
+
     private void reverseSlice(int length) {
         if (length < 2) {
             // reverseSlice(0) and reverseSlice(1) are no-op by definition
