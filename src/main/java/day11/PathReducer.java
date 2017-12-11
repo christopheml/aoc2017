@@ -26,9 +26,13 @@ class PathReducer {
     List<Direction> reduce(List<Direction> input) {
         List<Direction> reduced = new LinkedList<>(input);
 
-        rules.forEach(rule -> applyRule(rule, reduced));
+        reduceInPlace(reduced);
 
         return reduced;
+    }
+
+    void reduceInPlace(List<Direction> input) {
+        rules.forEach(rule -> applyRule(rule, input));
     }
 
     private void applyRule(ReductionRule reductionRule, List<Direction> input) {
