@@ -33,4 +33,8 @@ public class Connections {
         return connected;
     }
 
+    public Set<Integer> population() {
+        return new HashSet<>(neighbours.keySet());
+    }
+
 }

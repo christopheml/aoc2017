@@ -23,7 +23,11 @@ final class Solution {
                 }
             });
             Collection<Integer> connectedToZero = connections.resolve(0);
-            System.out.println("There are " + connectedToZero.size() + " programs connected to 0");
+            System.out.println("There are " + connectedToZero.size() + " programs connected to 0.");
+
+            GroupFinder groupFinder = new GroupFinder(connections);
+            int count = groupFinder.count();
+            System.out.println("There are " + count + " groups in total.");
         }
 
     }
