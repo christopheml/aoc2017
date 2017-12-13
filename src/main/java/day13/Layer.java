@@ -1,9 +1,9 @@
 package day13;
 
 public interface Layer {
-    boolean probe();
 
-    void tick();
+    boolean probe(int tick);
 
     int range();
+
 }

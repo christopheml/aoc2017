@@ -17,7 +17,7 @@ public class FirewallTest {
     }
 
     @Test
-    public void acceptance() {
+    public void first_part_acceptance_test() {
         Firewall firewall = new Firewall(asList(
                scanning(3),
                scanning(2),
@@ -32,4 +32,25 @@ public class FirewallTest {
         assertThat(severity).isEqualTo(24);
     }
 
+    @Test
+    public void second_part_acceptance_test() throws Exception {
+        Firewall firewall = new Firewall(asList(
+                scanning(3),
+                scanning(2),
+                inactive(),
+                inactive(),
+                scanning(4),
+                inactive(),
+                scanning(4)
+        ));
+
+        boolean caught;
+        int delay = 0;
+        do {
+            delay++;
+            caught = firewall.crossUntilCaught(delay);
+        } while (caught);
+
+        assertThat(delay).isEqualTo(10);
+    }
 }

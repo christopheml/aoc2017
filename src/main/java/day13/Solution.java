@@ -13,14 +13,28 @@ final class Solution {
     }
 
     public static void main(String... args) throws Exception {
-        List<Layer> scanners = getLayers();
-        firstPartSolution(scanners);
+        Firewall firewall = getFirewall();
+        firstPartSolution(firewall);
+        secondPartSolution(firewall);
     }
 
-    private static void firstPartSolution(List<Layer> scanners) {
-        Firewall firewall = new Firewall(scanners);
+    private static void firstPartSolution(Firewall firewall) {
         int severity = firewall.cross();
         System.out.println("Severity for crossing the firewall is: " + severity);
+    }
+
+    private static void secondPartSolution(Firewall firewall) {
+        boolean caught;
+        int delay = 0;
+        do {
+            delay++;
+            caught = firewall.crossUntilCaught(delay);
+        } while (caught);
+        System.out.println("Safe to cross delay is: " + delay);
+    }
+
+    private static Firewall getFirewall() throws Exception {
+        return new Firewall(getLayers());
     }
 
     private static List<Layer> getLayers() throws Exception {

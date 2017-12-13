@@ -3,35 +3,22 @@ package day13;
 class ScanningLayer implements Layer {
 
     private final int range;
-    private int position;
-    private int direction;
+    private final int periodicity;
 
     ScanningLayer(int range) {
         this.range = range;
-        position = 0;
-        direction = 1;
+        periodicity = (range - 1) * 2;
+
     }
 
     @Override
-    public boolean probe() {
-        return position == 0;
-    }
-
-    @Override
-    public void tick() {
-        position += direction;
-        if ((position == 0) || (position == range - 1)) {
-            reverse();
-        }
+    public boolean probe(int tick) {
+        return (tick % periodicity) == 0;
     }
 
     @Override
     public int range() {
         return range;
-    }
-
-    private void reverse() {
-        direction = -direction;
     }
 
 }

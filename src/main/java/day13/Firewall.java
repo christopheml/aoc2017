@@ -8,18 +8,29 @@ class Firewall {
 
     Firewall(List<Layer> scanningLayers) {
         this.scanningLayers = scanningLayers;
+
     }
 
     public int cross() {
         int severity = 0;
         for (int position = 0; position < scanningLayers.size(); ++position) {
             Layer scanningLayer = scanningLayers.get(position);
-            if (scanningLayer.probe()) {
+            if (scanningLayer.probe(position)) {
                 severity += position * scanningLayer.range();
             }
-            scanningLayers.forEach(Layer::tick);
         }
         return severity;
+    }
+
+    public boolean crossUntilCaught(int delay) {
+        for (int position = 0; position < scanningLayers.size(); ++position) {
+            Layer scanningLayer = scanningLayers.get(position);
+            if (scanningLayer.probe(position + delay)) {
+                return true;
+
+            }
+        }
+        return false;
     }
 
 }
