@@ -12,7 +12,7 @@ public class KnotHash {
 
     private final InnerKnotHash hash;
 
-    KnotHash(String input) {
+    public KnotHash(String input) {
         List<Integer> seed = toSeed(input);
         hash = new InnerKnotHash(256, seed);
     }
