@@ -24,4 +24,22 @@ public class JudgeTest {
         assertThat(count).isEqualTo(588);
     }
 
+    @Test
+    public void acceptance_picky_fast() throws Exception {
+        Generator a = PickyGenerator.a(65);
+        Generator b = PickyGenerator.b(8921);
+        Judge judge = new Judge(a, b);
+        long count = judge.count(5);
+        assertThat(count).isEqualTo(0);
+    }
+
+    @Test
+    public void acceptance_picky_slow() throws Exception {
+        Generator a = PickyGenerator.a(65);
+        Generator b = PickyGenerator.b(8921);
+        Judge judge = new Judge(a, b);
+        long count = judge.count(5000000);
+        assertThat(count).isEqualTo(309);
+    }
+
 }
