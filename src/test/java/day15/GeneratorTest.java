@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GeneratorTest {
 
-
     @Test
     public void acceptance_generator_a() throws Exception {
         Generator a = Generator.a(65);
