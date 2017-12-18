@@ -6,9 +6,16 @@ final class Solution {
 
     public static void main(String... args) throws Exception {
         String steps = input();
+        firstPartSolution(steps);
+    }
+
+    private static void firstPartSolution(String steps) {
         Line line = new Line(16);
-        Dance dance = new Dance(line);
-        dance.perform(steps);
+        Dance dance = new Dance(steps);
+
+        long l = System.currentTimeMillis();
+        dance.perform(line);
+        System.out.println("Time: " + (System.currentTimeMillis() - l) + "ms");
         System.out.println("Line after dancing: " + line);
     }
 

@@ -2,20 +2,20 @@ package day16;
 
 public class Dance {
 
-    private final Line line;
+    private final String steps;
 
-    public Dance(Line line) {
-        this.line = line;
+    public Dance(String steps) {
+        this.steps = steps;
     }
 
-    public void perform(String dance) {
-        String[] actions = dance.split(",");
+    public void perform(Line line) {
+        String[] actions = steps.split(",");
         for (String action : actions) {
-            performAction(action);
+            performAction(line, action);
         }
     }
 
-    private void performAction(String action) {
+    private void performAction(Line line, String action) {
         String parameters = action.substring(1);
         if (action.startsWith("s")) {
             int offset = Integer.valueOf(parameters);
