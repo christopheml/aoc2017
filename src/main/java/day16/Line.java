@@ -59,6 +59,10 @@ public class Line {
         throw new IllegalStateException();
     }
 
+    public boolean isInitialState() {
+        return PROGRAMS.startsWith(toString());
+    }
+
     @Override
     public String toString() {
         return new String(programs);
