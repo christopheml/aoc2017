@@ -2,7 +2,7 @@ package day16;
 
 import java.util.Arrays;
 
-class Line {
+public class Line {
 
     private static final String PROGRAMS = "abcdefghijklmnop";
 
