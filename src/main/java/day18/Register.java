@@ -20,4 +20,8 @@ class Register {
         this.value *= multiplier;
     }
 
+    public void modulo(int modulo) {
+        this.value %= modulo;
+    }
+
 }

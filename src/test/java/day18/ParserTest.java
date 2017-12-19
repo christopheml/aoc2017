@@ -81,6 +81,17 @@ public class ParserTest {
         assertThat(register.value()).isEqualTo(65);
     }
 
+    @Test
+    public void mod() throws Exception {
+        Instruction instruction = parser.parse("mod f 2");
+        Register register = register(5);
+        VirtualMachine vm = mock(VirtualMachine.class);
+        when(vm.register("f")).thenReturn(register);
+
+        instruction.accept(vm);
+        assertThat(register.value()).isEqualTo(1);
+    }
+
     private Register register(int value) {
         Register register = new Register();
         register.set(value);

@@ -16,12 +16,17 @@ public class Parser {
             case "mul":
                 return mul(register(parts[1]), readableArgument(parts[2]));
             case "mod":
+                return mod(register(parts[1]), readableArgument(parts[2]));
             case "rcv":
                 return recover(readableArgument(parts[1]));
             case "jgz":
             default:
                 throw new UnsupportedOperationException("Unknown instruction " + parts[0]);
         }
+    }
+
+    private Instruction mod(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
+        return virtualMachine -> register.apply(virtualMachine).modulo(value.apply(virtualMachine));
     }
 
     private Instruction mul(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
