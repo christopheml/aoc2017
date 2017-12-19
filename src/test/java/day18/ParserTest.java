@@ -1,10 +1,9 @@
 package day18;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 public class ParserTest {
 
@@ -13,19 +12,55 @@ public class ParserTest {
     @Test
     public void sound() throws Exception {
         Instruction instruction = parser.parse("snd 18");
-        VirtualMachine vm = Mockito.mock(VirtualMachine.class);
+        VirtualMachine vm = mock(VirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(1)).sound(18);
     }
 
     @Test
+    public void sound_register() throws Exception {
+        Instruction instruction = parser.parse("snd a");
+        VirtualMachine vm = mock(VirtualMachine.class);
+        when(vm.register("a")).thenReturn(register(10));
+
+        instruction.accept(vm);
+        verify(vm, times(1)).sound(10);
+    }
+
+    @Test
     public void recover_inactive() throws Exception {
         Instruction instruction = parser.parse("rcv 0");
-        VirtualMachine vm = Mockito.mock(VirtualMachine.class);
+        VirtualMachine vm = mock(VirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(0)).recover();
+    }
+
+    @Test
+    public void recover_active() throws Exception {
+        Instruction instruction = parser.parse("rcv 8");
+        VirtualMachine vm = mock(VirtualMachine.class);
+
+        instruction.accept(vm);
+        verify(vm, times(1)).recover();
+    }
+
+    @Test
+    public void set() throws Exception {
+        Instruction instruction = parser.parse("set a 255");
+        Register register = register(20);
+        VirtualMachine vm = mock(VirtualMachine.class);
+        when(vm.register("a")).thenReturn(register);
+
+        instruction.accept(vm);
+        assertThat(register.value()).isEqualTo(255);
+    }
+
+    private Register register(int value) {
+        Register register = new Register();
+        register.set(value);
+        return register;
     }
 
 }

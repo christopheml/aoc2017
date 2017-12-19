@@ -1,6 +1,6 @@
 package day18;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class Parser {
 
@@ -8,33 +8,45 @@ public class Parser {
         String[] parts = input.split(" ");
         switch (parts[0]) {
             case "snd":
-                return sound(argument(parts[1]));
+                return sound(readableArgument(parts[1]));
             case "set":
+                return set(register(parts[1]), readableArgument(parts[2]));
             case "add":
             case "mul":
             case "mod":
             case "rcv":
-                return recover(argument(parts[1]));
+                return recover(readableArgument(parts[1]));
             case "jgz":
             default:
                 throw new UnsupportedOperationException("Unknown instruction " + parts[0]);
         }
     }
 
-    private Supplier<Integer> argument(String part) {
-        return () -> Integer.valueOf(part);
+    private Instruction set(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
+        return virtualMachine -> register.apply(virtualMachine).set(value.apply(virtualMachine));
     }
 
-    private Instruction recover(Supplier<Integer> argument) {
+    private Function<VirtualMachine, Register> register(String name) {
+        return virtualMachine -> virtualMachine.register(name);
+    }
+
+    private Function<VirtualMachine, Integer> readableArgument(String argument) {
+        if (argument.length() == 1 && Character.isLetter(argument.charAt(0))) {
+            return virtualMachine -> virtualMachine.register(argument).value();
+        }
+        return virtualMachine -> Integer.valueOf(argument);
+    }
+
+    private Instruction recover(Function<VirtualMachine, Integer> argument) {
         return virtualMachine -> {
-            if (argument.get() > 0) {
+            if (argument.apply(virtualMachine) > 0) {
                 virtualMachine.recover();
             }
         };
     }
 
-    private Instruction sound(Supplier<Integer> frequency) {
-        return virtualMachine -> virtualMachine.sound(frequency.get());
+    private Instruction sound(Function<VirtualMachine, Integer> frequency) {
+        return virtualMachine -> virtualMachine.sound(frequency.apply(virtualMachine));
     }
 
 }

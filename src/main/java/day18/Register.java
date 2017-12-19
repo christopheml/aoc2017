@@ -1,5 +1,15 @@
 package day18;
 
-interface Register {
+class Register {
+
+    private int value = 0;
+
+    public int value() {
+        return value;
+    }
+
+    public void set(int value) {
+        this.value = value;
+    }
 
 }
