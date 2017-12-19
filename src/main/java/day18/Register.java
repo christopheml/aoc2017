@@ -12,4 +12,8 @@ class Register {
         this.value = value;
     }
 
+    public void add(int offset) {
+        this.value += offset;
+    }
+
 }

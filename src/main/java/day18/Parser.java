@@ -12,6 +12,7 @@ public class Parser {
             case "set":
                 return set(register(parts[1]), readableArgument(parts[2]));
             case "add":
+                return add(register(parts[1]), readableArgument(parts[2]));
             case "mul":
             case "mod":
             case "rcv":
@@ -20,6 +21,10 @@ public class Parser {
             default:
                 throw new UnsupportedOperationException("Unknown instruction " + parts[0]);
         }
+    }
+
+    private Instruction add(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
+        return virtualMachine -> register.apply(virtualMachine).add(value.apply(virtualMachine));
     }
 
     private Instruction set(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {

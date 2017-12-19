@@ -57,6 +57,19 @@ public class ParserTest {
         assertThat(register.value()).isEqualTo(255);
     }
 
+    @Test
+    public void add() throws Exception {
+        Instruction instruction = parser.parse("add a b");
+        Register a = register(20);
+        Register b = register(5);
+        VirtualMachine vm = mock(VirtualMachine.class);
+        when(vm.register("a")).thenReturn(a);
+        when(vm.register("b")).thenReturn(b);
+
+        instruction.accept(vm);
+        assertThat(a.value()).isEqualTo(25);
+    }
+
     private Register register(int value) {
         Register register = new Register();
         register.set(value);
