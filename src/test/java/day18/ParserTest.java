@@ -70,6 +70,17 @@ public class ParserTest {
         assertThat(a.value()).isEqualTo(25);
     }
 
+    @Test
+    public void mul() throws Exception {
+        Instruction instruction = parser.parse("mul d 13");
+        Register register = register(5);
+        VirtualMachine vm = mock(VirtualMachine.class);
+        when(vm.register("d")).thenReturn(register);
+
+        instruction.accept(vm);
+        assertThat(register.value()).isEqualTo(65);
+    }
+
     private Register register(int value) {
         Register register = new Register();
         register.set(value);

@@ -16,4 +16,8 @@ class Register {
         this.value += offset;
     }
 
+    public void multiply(int multiplier) {
+        this.value *= multiplier;
+    }
+
 }
