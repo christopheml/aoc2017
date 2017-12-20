@@ -5,7 +5,7 @@ import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
-public class Sound implements Instruction {
+public class Sound implements Instruction<SoundVirtualMachine> {
 
     private final Function<VirtualMachine, Long> frequency;
 
@@ -14,10 +14,8 @@ public class Sound implements Instruction {
     }
 
     @Override
-    public void accept(VirtualMachine virtualMachine) {
-        if (virtualMachine instanceof SoundVirtualMachine) {
-            ((SoundVirtualMachine) virtualMachine).sound(frequency.apply(virtualMachine));
-        }
+    public void accept(SoundVirtualMachine virtualMachine) {
+        virtualMachine.sound(frequency.apply(virtualMachine));
     }
 
 }

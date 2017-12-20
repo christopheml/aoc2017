@@ -5,7 +5,7 @@ import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
-public class Add implements Instruction {
+public class Add implements Instruction<VirtualMachine> {
 
     private final Function<VirtualMachine, Register> register;
 

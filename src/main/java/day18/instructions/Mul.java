@@ -5,7 +5,7 @@ import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
-public class Mul implements Instruction {
+public class Mul implements Instruction<VirtualMachine> {
 
     private final Function<VirtualMachine, Register> register;
 

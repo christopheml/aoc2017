@@ -5,7 +5,7 @@ import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
-public class Recover implements Instruction {
+public class Recover implements Instruction<SoundVirtualMachine> {
 
     private final Function<VirtualMachine, Long> condition;
 
@@ -14,11 +14,9 @@ public class Recover implements Instruction {
     }
 
     @Override
-    public void accept(VirtualMachine virtualMachine) {
-        if (virtualMachine instanceof SoundVirtualMachine) {
-            if (condition.apply(virtualMachine) > 0) {
-                ((SoundVirtualMachine) virtualMachine).recover();
-            }
+    public void accept(SoundVirtualMachine virtualMachine) {
+        if (condition.apply(virtualMachine) > 0) {
+            virtualMachine.recover();
         }
     }
 

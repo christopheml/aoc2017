@@ -4,7 +4,7 @@ import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
-public class Jump implements Instruction {
+public class Jump implements Instruction<VirtualMachine> {
 
     private final Function<VirtualMachine, Long> condition;
 

@@ -6,7 +6,7 @@ import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
-public class Receive implements Instruction {
+public class Receive implements Instruction<AsyncVirtualMachine> {
 
     private final Function<VirtualMachine, Register> register;
 
@@ -15,10 +15,8 @@ public class Receive implements Instruction {
     }
 
     @Override
-    public void accept(VirtualMachine virtualMachine) {
-        if (virtualMachine instanceof AsyncVirtualMachine) {
-            ((AsyncVirtualMachine) virtualMachine).receive(register.apply(virtualMachine));
-        }
+    public void accept(AsyncVirtualMachine virtualMachine) {
+        virtualMachine.receive(register.apply(virtualMachine));
     }
 
 }
