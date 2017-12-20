@@ -4,7 +4,7 @@ import day18.instructions.Instruction;
 
 import java.util.List;
 
-public class FirstRecoverVirtualMachine implements VirtualMachine {
+public class FirstRecoverVirtualMachine implements SoundVirtualMachine {
 
     private final Registers registers = new Registers();
 

@@ -28,11 +28,11 @@ public class Parser {
         }
     }
 
-    private Function<VirtualMachine, Register> register(String name) {
+    private Function<SoundVirtualMachine, Register> register(String name) {
         return virtualMachine -> virtualMachine.register(name);
     }
 
-    private Function<VirtualMachine, Long> readableArgument(String argument) {
+    private Function<SoundVirtualMachine, Long> readableArgument(String argument) {
         if (argument.length() == 1 && Character.isLetter(argument.charAt(0))) {
             return virtualMachine -> virtualMachine.register(argument).value();
         }

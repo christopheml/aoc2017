@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FirstRecoverVirtualMachineTest {
+public class FirstRecoverSoundVirtualMachineTest {
 
     @Test
     public void acceptance() throws Exception {

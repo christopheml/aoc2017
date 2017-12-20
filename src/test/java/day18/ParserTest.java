@@ -13,7 +13,7 @@ public class ParserTest {
     @Test
     public void sound() throws Exception {
         Instruction instruction = parser.parse("snd 18");
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(1)).sound(18);
@@ -22,7 +22,7 @@ public class ParserTest {
     @Test
     public void sound_register() throws Exception {
         Instruction instruction = parser.parse("snd a");
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
         when(vm.register("a")).thenReturn(register(10));
 
         instruction.accept(vm);
@@ -32,7 +32,7 @@ public class ParserTest {
     @Test
     public void recover_inactive() throws Exception {
         Instruction instruction = parser.parse("rcv 0");
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(0)).recover();
@@ -41,7 +41,7 @@ public class ParserTest {
     @Test
     public void recover_active() throws Exception {
         Instruction instruction = parser.parse("rcv 8");
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(1)).recover();
@@ -51,7 +51,7 @@ public class ParserTest {
     public void set() throws Exception {
         Instruction instruction = parser.parse("set a 255");
         Register register = register(20);
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
         when(vm.register("a")).thenReturn(register);
 
         instruction.accept(vm);
@@ -63,7 +63,7 @@ public class ParserTest {
         Instruction instruction = parser.parse("add a b");
         Register a = register(20);
         Register b = register(5);
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
         when(vm.register("a")).thenReturn(a);
         when(vm.register("b")).thenReturn(b);
 
@@ -75,7 +75,7 @@ public class ParserTest {
     public void mul() throws Exception {
         Instruction instruction = parser.parse("mul d 13");
         Register register = register(5);
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
         when(vm.register("d")).thenReturn(register);
 
         instruction.accept(vm);
@@ -86,7 +86,7 @@ public class ParserTest {
     public void mod() throws Exception {
         Instruction instruction = parser.parse("mod f 2");
         Register register = register(5);
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
         when(vm.register("f")).thenReturn(register);
 
         instruction.accept(vm);
@@ -96,7 +96,7 @@ public class ParserTest {
     @Test
     public void jump_active() throws Exception {
         Instruction instruction = parser.parse("jgz 3 2");
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(1)).jump(2);
@@ -105,7 +105,7 @@ public class ParserTest {
     @Test
     public void jump_inactive() throws Exception {
         Instruction instruction = parser.parse("jgz 0 10");
-        VirtualMachine vm = mock(VirtualMachine.class);
+        SoundVirtualMachine vm = mock(SoundVirtualMachine.class);
 
         instruction.accept(vm);
         verify(vm, times(0)).jump(anyInt());

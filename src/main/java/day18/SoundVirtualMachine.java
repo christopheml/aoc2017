@@ -1,6 +1,6 @@
 package day18;
 
-public interface VirtualMachine {
+public interface SoundVirtualMachine {
 
     void sound(long frequency);
 
