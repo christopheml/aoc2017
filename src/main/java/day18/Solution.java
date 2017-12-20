@@ -22,8 +22,8 @@ final class Solution {
 
     private static void firstPartSolution() throws Exception {
         try (FileReader reader = FileReader.read("/day18/program.txt")) {
-            Parser soundParser = new SoundParser();
-            List<Instruction> program = reader.lines().map(soundParser::parse).collect(Collectors.toList());
+            Parser parser = new SoundParser();
+            List<Instruction> program = reader.lines().map(parser::parse).collect(Collectors.toList());
             FirstRecoverVirtualMachine vm = new FirstRecoverVirtualMachine();
             long solution = vm.executeUntilFirstRecover(program);
             System.out.println("The first recovered frequency is: " + solution);
@@ -32,8 +32,8 @@ final class Solution {
 
     private static void secondPartSolution() throws Exception {
         try (FileReader reader = FileReader.read("/day18/program.txt")) {
-            Parser soundParser = new AsyncParser();
-            List<Instruction> program = reader.lines().map(soundParser::parse).collect(Collectors.toList());
+            Parser parser = new AsyncParser();
+            List<Instruction> program = reader.lines().map(parser::parse).collect(Collectors.toList());
 
             Queue<Long> a = new ArrayDeque<>();
             Queue<Long> b = new ArrayDeque<>();
