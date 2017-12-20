@@ -29,7 +29,7 @@ public class FirstRecoverVirtualMachineTest {
         List<Instruction> program = instructions.stream().map(parser::parse).collect(Collectors.toList());
         FirstRecoverVirtualMachine vm = new FirstRecoverVirtualMachine();
 
-        int recovered = vm.executeUntilFirstRecover(program);
+        long recovered = vm.executeUntilFirstRecover(program);
 
         assertThat(recovered).isEqualTo(4);
     }

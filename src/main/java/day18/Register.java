@@ -2,25 +2,25 @@ package day18;
 
 public class Register {
 
-    private int value = 0;
+    private long value = 0;
 
-    public int value() {
+    public long value() {
         return value;
     }
 
-    public void set(int value) {
+    public void set(long value) {
         this.value = value;
     }
 
-    public void add(int offset) {
+    public void add(long offset) {
         this.value += offset;
     }
 
-    public void multiply(int multiplier) {
+    public void multiply(long multiplier) {
         this.value *= multiplier;
     }
 
-    public void modulo(int modulo) {
+    public void modulo(long modulo) {
         this.value %= modulo;
     }
 

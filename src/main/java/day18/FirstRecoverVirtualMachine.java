@@ -14,14 +14,14 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
 
     private boolean recovered;
 
-    private int frequency;
+    private long frequency;
 
-    public int executeUntilFirstRecover(List<Instruction> program) {
+    public long executeUntilFirstRecover(List<Instruction> program) {
         pointer = 0;
 
         while (pointer >= 0 && pointer < program.size()) {
             Instruction instruction = program.get(pointer);
-            int position = pointer;
+            long position = pointer;
             instruction.accept(this);
             System.out.println("[" + position + "] " + instruction.getClass().getSimpleName() + " " + registers);
 
@@ -39,7 +39,7 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
     }
 
     @Override
-    public void sound(int frequency) {
+    public void sound(long frequency) {
         this.frequency = frequency;
     }
 
@@ -54,7 +54,7 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
     }
 
     @Override
-    public void jump(int offset) {
+    public void jump(long offset) {
         pointer += offset;
         jumped = true;
     }

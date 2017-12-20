@@ -6,9 +6,9 @@ import java.util.function.Function;
 
 public class Sound implements Instruction {
 
-    private final Function<VirtualMachine, Integer> frequency;
+    private final Function<VirtualMachine, Long> frequency;
 
-    public Sound(Function<VirtualMachine, Integer> frequency) {
+    public Sound(Function<VirtualMachine, Long> frequency) {
         this.frequency = frequency;
     }
 

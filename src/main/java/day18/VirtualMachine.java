@@ -2,12 +2,12 @@ package day18;
 
 public interface VirtualMachine {
 
-    void sound(int frequency);
+    void sound(long frequency);
 
     Register register(String name);
 
     void recover();
 
-    void jump(int offset);
+    void jump(long offset);
 
 }

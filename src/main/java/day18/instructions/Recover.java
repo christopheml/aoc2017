@@ -6,9 +6,9 @@ import java.util.function.Function;
 
 public class Recover implements Instruction {
 
-    private final Function<VirtualMachine, Integer> condition;
+    private final Function<VirtualMachine, Long> condition;
 
-    public Recover(Function<VirtualMachine, Integer> condition) {
+    public Recover(Function<VirtualMachine, Long> condition) {
         this.condition = condition;
     }
 

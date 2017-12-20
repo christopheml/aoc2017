@@ -13,7 +13,7 @@ final class Solution {
             Parser parser = new Parser();
             List<Instruction> program = reader.lines().map(parser::parse).collect(Collectors.toList());
             FirstRecoverVirtualMachine vm = new FirstRecoverVirtualMachine();
-            int solution = vm.executeUntilFirstRecover(program);
+            long solution = vm.executeUntilFirstRecover(program);
             System.out.println("The first recovered frequency is: " + solution);
         }
     }

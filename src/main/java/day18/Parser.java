@@ -32,11 +32,11 @@ public class Parser {
         return virtualMachine -> virtualMachine.register(name);
     }
 
-    private Function<VirtualMachine, Integer> readableArgument(String argument) {
+    private Function<VirtualMachine, Long> readableArgument(String argument) {
         if (argument.length() == 1 && Character.isLetter(argument.charAt(0))) {
             return virtualMachine -> virtualMachine.register(argument).value();
         }
-        return virtualMachine -> Integer.valueOf(argument);
+        return virtualMachine -> Long.valueOf(argument);
     }
 
 }

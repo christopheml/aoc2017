@@ -9,9 +9,9 @@ public class Mul implements Instruction {
 
     private final Function<VirtualMachine, Register> register;
 
-    private final Function<VirtualMachine, Integer> value;
+    private final Function<VirtualMachine, Long> value;
 
-    public Mul(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
+    public Mul(Function<VirtualMachine, Register> register, Function<VirtualMachine, Long> value) {
         this.register = register;
         this.value = value;
     }

@@ -9,9 +9,9 @@ public class Mod implements Instruction {
 
     private final Function<VirtualMachine, Register> register;
 
-    private final Function<VirtualMachine, Integer> value;
+    private final Function<VirtualMachine, Long> value;
 
-    public Mod(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
+    public Mod(Function<VirtualMachine, Register> register, Function<VirtualMachine, Long> value) {
         this.register = register;
         this.value = value;
     }

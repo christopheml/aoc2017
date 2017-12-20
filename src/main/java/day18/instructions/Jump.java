@@ -6,11 +6,11 @@ import java.util.function.Function;
 
 public class Jump implements Instruction {
 
-    private final Function<VirtualMachine, Integer> condition;
+    private final Function<VirtualMachine, Long> condition;
 
-    private final Function<VirtualMachine, Integer> offset;
+    private final Function<VirtualMachine, Long> offset;
 
-    public Jump(Function<VirtualMachine, Integer> condition, Function<VirtualMachine, Integer> offset) {
+    public Jump(Function<VirtualMachine, Long> condition, Function<VirtualMachine, Long> offset) {
         this.condition = condition;
         this.offset = offset;
     }
