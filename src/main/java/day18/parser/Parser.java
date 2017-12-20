@@ -1,16 +1,16 @@
-package day18;
+package day18.parser;
 
+import day18.Register;
+import day18.SoundVirtualMachine;
 import day18.instructions.*;
 
 import java.util.function.Function;
 
-public class Parser {
+public abstract class Parser {
 
     public Instruction parse(String input) {
         String[] parts = input.split(" ");
         switch (parts[0]) {
-            case "snd":
-                return new Sound(readableArgument(parts[1]));
             case "set":
                 return new Set(register(parts[1]), readableArgument(parts[2]));
             case "add":
@@ -19,20 +19,20 @@ public class Parser {
                 return new Mul(register(parts[1]), readableArgument(parts[2]));
             case "mod":
                 return new Mod(register(parts[1]), readableArgument(parts[2]));
-            case "rcv":
-                return new Recover(readableArgument(parts[1]));
             case "jgz":
                 return new Jump(readableArgument(parts[1]), readableArgument(parts[2]));
             default:
-                throw new UnsupportedOperationException("Unknown instruction " + parts[0]);
+                return doParse(parts);
         }
     }
 
-    private Function<SoundVirtualMachine, Register> register(String name) {
+    protected abstract Instruction doParse(String[] parts);
+
+    protected Function<SoundVirtualMachine, Register> register(String name) {
         return virtualMachine -> virtualMachine.register(name);
     }
 
-    private Function<SoundVirtualMachine, Long> readableArgument(String argument) {
+    protected Function<SoundVirtualMachine, Long> readableArgument(String argument) {
         if (argument.length() == 1 && Character.isLetter(argument.charAt(0))) {
             return virtualMachine -> virtualMachine.register(argument).value();
         }

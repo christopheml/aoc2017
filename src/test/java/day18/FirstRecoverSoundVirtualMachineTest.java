@@ -1,6 +1,8 @@
 package day18;
 
 import day18.instructions.Instruction;
+import day18.parser.Parser;
+import day18.parser.SoundParser;
 import org.junit.Test;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class FirstRecoverSoundVirtualMachineTest {
                 "set a 1",
                 "jgz a -2");
 
-        Parser parser = new Parser();
+        Parser parser = new SoundParser();
         List<Instruction> program = instructions.stream().map(parser::parse).collect(Collectors.toList());
         FirstRecoverVirtualMachine vm = new FirstRecoverVirtualMachine();
 
