@@ -1,22 +1,22 @@
 package day18.instructions;
 
-import day18.SoundVirtualMachine;
+import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
 public class Jump implements Instruction {
 
-    private final Function<SoundVirtualMachine, Long> condition;
+    private final Function<VirtualMachine, Long> condition;
 
-    private final Function<SoundVirtualMachine, Long> offset;
+    private final Function<VirtualMachine, Long> offset;
 
-    public Jump(Function<SoundVirtualMachine, Long> condition, Function<SoundVirtualMachine, Long> offset) {
+    public Jump(Function<VirtualMachine, Long> condition, Function<VirtualMachine, Long> offset) {
         this.condition = condition;
         this.offset = offset;
     }
 
     @Override
-    public void accept(SoundVirtualMachine virtualMachine) {
+    public void accept(VirtualMachine virtualMachine) {
         if (condition.apply(virtualMachine) > 0) {
             virtualMachine.jump(offset.apply(virtualMachine));
         }

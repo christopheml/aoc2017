@@ -2,6 +2,8 @@ package day18;
 
 import day18.instructions.Instruction;
 import day18.parser.SoundParser;
+import day18.vm.Register;
+import day18.vm.SoundVirtualMachine;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

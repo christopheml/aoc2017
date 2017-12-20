@@ -3,6 +3,7 @@ package day18;
 import day18.instructions.Instruction;
 import day18.parser.Parser;
 import day18.parser.SoundParser;
+import day18.vm.FirstRecoverVirtualMachine;
 import org.junit.Test;
 
 import java.util.List;

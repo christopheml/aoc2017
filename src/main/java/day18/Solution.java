@@ -4,6 +4,7 @@ import common.FileReader;
 import day18.instructions.Instruction;
 import day18.parser.Parser;
 import day18.parser.SoundParser;
+import day18.vm.FirstRecoverVirtualMachine;
 
 import java.util.List;
 import java.util.stream.Collectors;

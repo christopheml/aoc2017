@@ -1,8 +1,8 @@
 package day18.parser;
 
-import day18.Register;
-import day18.SoundVirtualMachine;
 import day18.instructions.*;
+import day18.vm.Register;
+import day18.vm.VirtualMachine;
 
 import java.util.function.Function;
 
@@ -28,11 +28,11 @@ public abstract class Parser {
 
     protected abstract Instruction doParse(String[] parts);
 
-    protected Function<SoundVirtualMachine, Register> register(String name) {
+    protected Function<VirtualMachine, Register> register(String name) {
         return virtualMachine -> virtualMachine.register(name);
     }
 
-    protected Function<SoundVirtualMachine, Long> readableArgument(String argument) {
+    protected Function<VirtualMachine, Long> readableArgument(String argument) {
         if (argument.length() == 1 && Character.isLetter(argument.charAt(0))) {
             return virtualMachine -> virtualMachine.register(argument).value();
         }

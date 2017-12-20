@@ -1,4 +1,6 @@
-package day18;
+package day18.vm;
+
+import day18.vm.Register;
 
 import java.util.HashMap;
 import java.util.Map;

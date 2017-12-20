@@ -1,4 +1,4 @@
-package day18;
+package day18.vm;
 
 import day18.instructions.Instruction;
 

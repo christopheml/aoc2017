@@ -1,4 +1,4 @@
-package day18;
+package day18.vm;
 
 public class Register {
 
