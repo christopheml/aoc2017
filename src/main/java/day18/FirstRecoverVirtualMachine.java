@@ -2,19 +2,17 @@ package day18;
 
 import day18.instructions.Instruction;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FirstRecoverVirtualMachine implements VirtualMachine {
 
-    private final Map<String, Register> registers = new HashMap<>();
+    private final Registers registers = new Registers();
 
     private int pointer;
 
-    boolean jumped;
+    private boolean jumped;
 
-    boolean recovered;
+    private boolean recovered;
 
     private int frequency;
 
@@ -22,7 +20,10 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
         pointer = 0;
 
         while (pointer >= 0 && pointer < program.size()) {
-            program.get(pointer).accept(this);
+            Instruction instruction = program.get(pointer);
+            int position = pointer;
+            instruction.accept(this);
+            System.out.println("[" + position + "] " + instruction.getClass().getSimpleName() + " " + registers);
 
             if (recovered) {
                 return frequency;
@@ -44,7 +45,7 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
 
     @Override
     public Register register(String name) {
-        return registers.computeIfAbsent(name, n -> new Register());
+        return registers.get(name);
     }
 
     @Override
@@ -54,7 +55,6 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
 
     @Override
     public void jump(int offset) {
-        System.out.println("Jumping to " + offset);
         pointer += offset;
         jumped = true;
     }
