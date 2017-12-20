@@ -1,10 +1,6 @@
 package day18.parser;
 
 import day18.instructions.*;
-import day18.vm.Register;
-import day18.vm.VirtualMachine;
-
-import java.util.function.Function;
 
 public abstract class Parser {
 
@@ -28,11 +24,11 @@ public abstract class Parser {
 
     protected abstract Instruction doParse(String[] parts);
 
-    protected Function<VirtualMachine, Register> register(String name) {
+    protected RegisterAccess register(String name) {
         return virtualMachine -> virtualMachine.register(name);
     }
 
-    protected Function<VirtualMachine, Long> readableArgument(String argument) {
+    protected ValueLookup readableArgument(String argument) {
         if (argument.length() == 1 && Character.isLetter(argument.charAt(0))) {
             return virtualMachine -> virtualMachine.register(argument).value();
         }

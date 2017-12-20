@@ -1,15 +1,12 @@
 package day18.instructions;
 
 import day18.vm.SoundVirtualMachine;
-import day18.vm.VirtualMachine;
-
-import java.util.function.Function;
 
 public class Recover implements Instruction<SoundVirtualMachine> {
 
-    private final Function<VirtualMachine, Long> condition;
+    private final ValueLookup condition;
 
-    public Recover(Function<VirtualMachine, Long> condition) {
+    public Recover(ValueLookup condition) {
         this.condition = condition;
     }
 

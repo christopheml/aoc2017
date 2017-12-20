@@ -1,15 +1,12 @@
 package day18.instructions;
 
 import day18.vm.AsyncVirtualMachine;
-import day18.vm.VirtualMachine;
-
-import java.util.function.Function;
 
 public class Send implements Instruction<AsyncVirtualMachine> {
 
-    private final Function<VirtualMachine, Long> value;
+    private final ValueLookup value;
 
-    public Send(Function<VirtualMachine, Long> value) {
+    public Send(ValueLookup value) {
         this.value = value;
     }
 

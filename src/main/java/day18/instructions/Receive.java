@@ -1,16 +1,12 @@
 package day18.instructions;
 
 import day18.vm.AsyncVirtualMachine;
-import day18.vm.Register;
-import day18.vm.VirtualMachine;
-
-import java.util.function.Function;
 
 public class Receive implements Instruction<AsyncVirtualMachine> {
 
-    private final Function<VirtualMachine, Register> register;
+    private final RegisterAccess register;
 
-    public Receive(Function<VirtualMachine, Register> register) {
+    public Receive(RegisterAccess register) {
         this.register = register;
     }
 

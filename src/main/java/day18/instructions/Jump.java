@@ -2,15 +2,13 @@ package day18.instructions;
 
 import day18.vm.VirtualMachine;
 
-import java.util.function.Function;
-
 public class Jump implements Instruction<VirtualMachine> {
 
-    private final Function<VirtualMachine, Long> condition;
+    private final ValueLookup condition;
 
-    private final Function<VirtualMachine, Long> offset;
+    private final ValueLookup offset;
 
-    public Jump(Function<VirtualMachine, Long> condition, Function<VirtualMachine, Long> offset) {
+    public Jump(ValueLookup condition, ValueLookup offset) {
         this.condition = condition;
         this.offset = offset;
     }
