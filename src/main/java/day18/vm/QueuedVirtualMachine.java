@@ -1,5 +1,8 @@
 package day18.vm;
 
+import day18.instructions.Instruction;
+
+import java.util.List;
 import java.util.Queue;
 
 public class QueuedVirtualMachine implements AsyncVirtualMachine {
@@ -10,13 +13,32 @@ public class QueuedVirtualMachine implements AsyncVirtualMachine {
 
     private final Queue<Long> output;
 
-    private long pointer;
+    private int pointer = 0;
 
     private boolean jumped;
 
-    public QueuedVirtualMachine(Queue<Long> input, Queue<Long> output) {
+    private boolean blocked;
+
+    private final int identifier;
+
+    public QueuedVirtualMachine(int identifier, Queue<Long> input, Queue<Long> output) {
+        this.identifier = identifier;
         this.input = input;
         this.output = output;
+        registers.get("p").set(identifier);
+    }
+
+    public boolean run(List<Instruction> program) {
+        while (!blocked && pointer >= 0 && pointer < program.size()) {
+            Instruction instruction = program.get(pointer);
+            instruction.accept(this);
+
+            if (!jumped) {
+                pointer++;
+            }
+            jumped = false;
+        }
+        return blocked;
     }
 
     @Override
@@ -34,7 +56,7 @@ public class QueuedVirtualMachine implements AsyncVirtualMachine {
         if (!input.isEmpty()) {
             register.set(input.remove());
         } else {
-            // blocked
+            blocked = true;
         }
     }
 
