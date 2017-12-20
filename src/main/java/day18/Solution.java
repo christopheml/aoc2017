@@ -1,6 +1,7 @@
 package day18;
 
 import common.FileReader;
+import day18.instructions.Instruction;
 
 import java.util.List;
 import java.util.stream.Collectors;

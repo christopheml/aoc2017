@@ -1,6 +1,6 @@
 package day18;
 
-class Register {
+public class Register {
 
     private int value = 0;
 

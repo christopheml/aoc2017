@@ -1,5 +1,7 @@
 package day18;
 
+import day18.instructions.*;
+
 import java.util.function.Function;
 
 public class Parser {
@@ -8,46 +10,22 @@ public class Parser {
         String[] parts = input.split(" ");
         switch (parts[0]) {
             case "snd":
-                return sound(readableArgument(parts[1]));
+                return new Sound(readableArgument(parts[1]));
             case "set":
-                return set(register(parts[1]), readableArgument(parts[2]));
+                return new Set(register(parts[1]), readableArgument(parts[2]));
             case "add":
-                return add(register(parts[1]), readableArgument(parts[2]));
+                return new Add(register(parts[1]), readableArgument(parts[2]));
             case "mul":
-                return mul(register(parts[1]), readableArgument(parts[2]));
+                return new Mul(register(parts[1]), readableArgument(parts[2]));
             case "mod":
-                return mod(register(parts[1]), readableArgument(parts[2]));
+                return new Mod(register(parts[1]), readableArgument(parts[2]));
             case "rcv":
-                return recover(readableArgument(parts[1]));
+                return new Recover(readableArgument(parts[1]));
             case "jgz":
-                return jump(readableArgument(parts[1]), readableArgument(parts[2]));
+                return new Jump(readableArgument(parts[1]), readableArgument(parts[2]));
             default:
                 throw new UnsupportedOperationException("Unknown instruction " + parts[0]);
         }
-    }
-
-    private Instruction jump(Function<VirtualMachine, Integer> condition, Function<VirtualMachine, Integer> offset) {
-        return virtualMachine -> {
-            if (condition.apply(virtualMachine) > 0) {
-                virtualMachine.jump(offset.apply(virtualMachine));
-            }
-        };
-    }
-
-    private Instruction mod(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
-        return virtualMachine -> register.apply(virtualMachine).modulo(value.apply(virtualMachine));
-    }
-
-    private Instruction mul(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
-        return virtualMachine -> register.apply(virtualMachine).multiply(value.apply(virtualMachine));
-    }
-
-    private Instruction add(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
-        return virtualMachine -> register.apply(virtualMachine).add(value.apply(virtualMachine));
-    }
-
-    private Instruction set(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {
-        return virtualMachine -> register.apply(virtualMachine).set(value.apply(virtualMachine));
     }
 
     private Function<VirtualMachine, Register> register(String name) {
@@ -59,18 +37,6 @@ public class Parser {
             return virtualMachine -> virtualMachine.register(argument).value();
         }
         return virtualMachine -> Integer.valueOf(argument);
-    }
-
-    private Instruction recover(Function<VirtualMachine, Integer> argument) {
-        return virtualMachine -> {
-            if (argument.apply(virtualMachine) > 0) {
-                virtualMachine.recover();
-            }
-        };
-    }
-
-    private Instruction sound(Function<VirtualMachine, Integer> frequency) {
-        return virtualMachine -> virtualMachine.sound(frequency.apply(virtualMachine));
     }
 
 }

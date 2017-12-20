@@ -1,5 +1,7 @@
 package day18;
 
+import day18.instructions.Instruction;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +54,7 @@ public class FirstRecoverVirtualMachine implements VirtualMachine {
 
     @Override
     public void jump(int offset) {
+        System.out.println("Jumping to " + offset);
         pointer += offset;
         jumped = true;
     }

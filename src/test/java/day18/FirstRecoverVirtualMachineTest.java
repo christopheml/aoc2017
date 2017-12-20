@@ -1,5 +1,6 @@
 package day18;
 
+import day18.instructions.Instruction;
 import org.junit.Test;
 
 import java.util.List;
