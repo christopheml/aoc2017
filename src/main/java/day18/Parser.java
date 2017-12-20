@@ -20,9 +20,18 @@ public class Parser {
             case "rcv":
                 return recover(readableArgument(parts[1]));
             case "jgz":
+                return jump(readableArgument(parts[1]), readableArgument(parts[2]));
             default:
                 throw new UnsupportedOperationException("Unknown instruction " + parts[0]);
         }
+    }
+
+    private Instruction jump(Function<VirtualMachine, Integer> condition, Function<VirtualMachine, Integer> offset) {
+        return virtualMachine -> {
+            if (condition.apply(virtualMachine) > 0) {
+                virtualMachine.jump(offset.apply(virtualMachine));
+            }
+        };
     }
 
     private Instruction mod(Function<VirtualMachine, Register> register, Function<VirtualMachine, Integer> value) {

@@ -92,6 +92,24 @@ public class ParserTest {
         assertThat(register.value()).isEqualTo(1);
     }
 
+    @Test
+    public void jump_active() throws Exception {
+        Instruction instruction = parser.parse("jgz 3 2");
+        VirtualMachine vm = mock(VirtualMachine.class);
+
+        instruction.accept(vm);
+        verify(vm, times(1)).jump(2);
+    }
+
+    @Test
+    public void jump_inactive() throws Exception {
+        Instruction instruction = parser.parse("jgz 0 10");
+        VirtualMachine vm = mock(VirtualMachine.class);
+
+        instruction.accept(vm);
+        verify(vm, times(0)).jump(anyInt());
+    }
+
     private Register register(int value) {
         Register register = new Register();
         register.set(value);
