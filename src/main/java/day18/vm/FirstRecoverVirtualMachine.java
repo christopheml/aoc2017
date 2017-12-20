@@ -21,9 +21,7 @@ public class FirstRecoverVirtualMachine implements SoundVirtualMachine {
 
         while (pointer >= 0 && pointer < program.size()) {
             Instruction instruction = program.get(pointer);
-            long position = pointer;
             instruction.accept(this);
-            System.out.println("[" + position + "] " + instruction.getClass().getSimpleName() + " " + registers);
 
             if (recovered) {
                 return frequency;

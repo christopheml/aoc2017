@@ -1,6 +1,5 @@
 package day18.vm;
 
-import day18.CountingQueue;
 import day18.instructions.Instruction;
 import day18.instructions.Receive;
 import day18.instructions.Send;
@@ -49,7 +48,7 @@ public class QueuedVirtualMachineTest {
 
     @Test
     public void acceptance_test() throws Exception {
-        CountingQueue<Long> a = new CountingQueue<>(new ArrayDeque<>());
+        Queue<Long> a = new ArrayDeque<>();
         Queue<Long> b = new ArrayDeque<>();
 
         QueuedVirtualMachine vm1 = new QueuedVirtualMachine(0, a, b);
@@ -58,15 +57,12 @@ public class QueuedVirtualMachineTest {
         Parser parser = new AsyncParser();
         List<Instruction> program = asList("snd 1", "snd 2", "snd p", "rcv a", "rcv b", "rcv c", "rcv d").stream().map(parser::parse).collect(Collectors.toList());
 
-        boolean vm1Blocked;
-        boolean vm2Blocked;
-
         do {
-            vm1Blocked = vm1.run(program);
-            vm2Blocked = vm2.run(program);
-        } while (!vm1Blocked || !vm2Blocked);
+            vm1.run(program);
+            vm2.run(program);
+        } while (!vm1.isBlocked() || !vm2.isBlocked());
 
-        assertThat(a.getCount()).isEqualTo(3);
+        assertThat(vm1.getSendCount()).isEqualTo(3);
     }
 
 }

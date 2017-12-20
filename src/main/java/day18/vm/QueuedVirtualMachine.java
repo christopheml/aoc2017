@@ -19,30 +19,34 @@ public class QueuedVirtualMachine implements AsyncVirtualMachine {
 
     private boolean blocked;
 
-    private final int identifier;
+    private int sendCount = 0;
 
     public QueuedVirtualMachine(int identifier, Queue<Long> input, Queue<Long> output) {
-        this.identifier = identifier;
         this.input = input;
         this.output = output;
         registers.get("p").set(identifier);
     }
 
-    public boolean run(List<Instruction> program) {
+    public void run(List<Instruction> program) {
+        blocked = false;
         while (!blocked && pointer >= 0 && pointer < program.size()) {
             Instruction instruction = program.get(pointer);
             instruction.accept(this);
 
-            if (!jumped) {
+            if (!jumped && !blocked) {
                 pointer++;
             }
             jumped = false;
         }
-        return blocked;
+    }
+
+    public boolean isBlocked() {
+        return blocked && input.isEmpty();
     }
 
     @Override
     public void send(long frequency) {
+        sendCount++;
         output.add(frequency);
     }
 
@@ -66,4 +70,7 @@ public class QueuedVirtualMachine implements AsyncVirtualMachine {
         jumped = true;
     }
 
+    public int getSendCount() {
+        return sendCount;
+    }
 }
