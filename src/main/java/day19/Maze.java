@@ -10,7 +10,13 @@ public class Maze {
 
     private static final char TURN = '+';
 
+    public int getSteps() {
+        return steps;
+    }
+
     private enum Direction { UP, DOWN, LEFT, RIGHT }
+
+    private int steps;
 
     private static class Position {
         private final int x;
@@ -53,6 +59,7 @@ public class Maze {
         char current;
 
         do {
+            steps++;
             position = position.apply(direction);
 
             current = read(position);

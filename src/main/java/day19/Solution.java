@@ -10,7 +10,8 @@ public class Solution {
         try (FileReader reader = FileReader.read("/day19/maze.txt")) {
             List<String> input = reader.lines().collect(Collectors.toList());
             Maze maze = new Maze(input);
-            System.out.println(maze.walk());
+            System.out.println("Word is : " + maze.walk());
+            System.out.println("Maze walked in " + maze.getSteps() + " steps.");
         }
     }
 
